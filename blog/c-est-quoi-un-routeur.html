@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C'est quoi un routeur ? Fonctionnement, types et sécurité expliqués</title>
+<meta name="description" content="Le routeur expliqué simplement : à quoi il sert, comment il fonctionne, la différence avec un modem, les types (WiFi, Mesh, filaire) et les fonctions de sécurité.">
+<link rel="canonical" href="https://testvitesse.com/blog/c-est-quoi-un-routeur.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C'est quoi un routeur ? Le guide complet">
+<meta property="og:description" content="Fonctionnement, types et sécurité d'un routeur, expliqués simplement.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"C'est quoi un routeur ? Fonctionnement, types et sécurité expliqués",
+  "description":"Le routeur expliqué simplement : fonctionnement, différence avec le modem, types et sécurité.",
+  "inLanguage":"fr",
+  "author":{"@type":"Organization","name":"TestVitesse"},
+  "publisher":{"@type":"Organization","name":"TestVitesse"}
+}
+</script>
+<style>
+  :root{
+    --bg:#f6f8f4;--bg2:#eef3ec;--panel:#ffffff;--stroke:#e3e9e0;
+    --text:#1a2420;--muted:#5e6e65;--body:#37433c;--dl:#0fae7a;--dl-soft:rgba(15,174,122,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Sora',sans-serif;color:var(--text);min-height:100vh;line-height:1.75;
+    background:
+      radial-gradient(800px 500px at 90% -8%, rgba(15,174,122,0.09), transparent 60%),
+      linear-gradient(180deg,var(--bg),var(--bg2));
+    padding:28px 18px 80px;
+  }
+  .wrap{width:100%;max-width:720px;margin:0 auto}
+  nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+  .logo{font-weight:700;font-size:18px;letter-spacing:-.3px;text-decoration:none;color:var(--text)}
+  .logo b{color:var(--dl)}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px}
+  .nav-links a:hover{color:var(--text)}
+
+  .crumb{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .crumb a{color:var(--muted);text-decoration:none}
+  .crumb a:hover{color:var(--dl)}
+
+  article h1{font-size:clamp(27px,5.5vw,40px);font-weight:700;letter-spacing:-.6px;line-height:1.2;margin-bottom:14px}
+  .meta-line{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace;margin-bottom:30px;flex-wrap:wrap}
+  .meta-line .tag{color:var(--dl);background:var(--dl-soft);padding:3px 9px;border-radius:6px;font-weight:600}
+
+  article p{margin:0 0 20px;color:var(--body);font-size:16px}
+  article h2{font-size:24px;font-weight:600;letter-spacing:-.3px;margin:44px 0 14px;line-height:1.3;color:var(--text)}
+  article h2 .n{color:var(--dl);font-family:'JetBrains Mono',monospace;font-size:18px;margin-right:8px}
+  article h3{font-size:18.5px;font-weight:600;margin:28px 0 10px;color:var(--text)}
+  article ul{margin:0 0 20px;padding-left:22px;color:var(--body)}
+  article li{margin-bottom:9px}
+  article strong{color:var(--text);font-weight:600}
+  a.inline{color:var(--dl);text-decoration:none;border-bottom:1px solid rgba(15,174,122,.4)}
+  a.inline:hover{border-color:var(--dl)}
+
+  .intro{font-size:17.5px;color:#2b352f;border-left:3px solid var(--dl);padding-left:18px;margin-bottom:34px}
+
+  table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px;background:var(--panel);border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(26,36,32,.04)}
+  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--stroke);vertical-align:top}
+  th{background:var(--dl-soft);color:var(--text);font-weight:600;font-size:14px}
+  tr:last-child td{border-bottom:none}
+
+  .cta-box{background:var(--panel);border:1px solid var(--stroke);border-radius:18px;padding:26px;margin:42px 0;text-align:center;box-shadow:0 4px 20px rgba(26,36,32,.05)}
+  .cta-box h3{font-size:19px;margin-bottom:8px}
+  .cta-box p{font-size:14px;color:var(--muted);margin-bottom:18px}
+  .cta-btn{display:inline-block;background:var(--dl);color:#fff;font-weight:700;text-decoration:none;
+    padding:13px 34px;border-radius:100px;font-size:15px;box-shadow:0 8px 22px rgba(15,174,122,.28);transition:transform .15s}
+  .cta-btn:hover{transform:translateY(-2px)}
+
+  .tip{background:var(--dl-soft);border:1px solid rgba(15,174,122,.22);border-radius:14px;padding:16px 18px;margin:22px 0;font-size:14.5px;color:#2b352f}
+  .tip b{color:var(--dl)}
+
+  footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--stroke);padding-top:24px}
+  footer a{color:var(--dl);text-decoration:none;font-weight:600}
+  @media(max-width:520px){.nav-links a{margin-left:14px;font-size:13px}article p{font-size:15.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="../index.html" class="logo">Test<b>Vitesse</b></a>
+    <div class="nav-links">
+      <a href="../index.html">Test de débit</a>
+      <a href="index.html">Blog</a>
+    </div>
+  </nav>
+
+  <div class="crumb"><a href="../index.html">Accueil</a> &rsaquo; <a href="index.html">Blog</a> &rsaquo; C'est quoi un routeur ?</div>
+
+  <article>
+    <h1>Le routeur : le c&oelig;ur du r&eacute;seau et la passerelle vers le monde num&eacute;rique</h1>
+    <div class="meta-line">
+      <span class="tag">Comprendre</span>
+      <span>Lecture &middot; 7 min</span>
+      <span>&middot; Mis &agrave; jour r&eacute;cemment</span>
+    </div>
+
+    <p class="intro">&Agrave; l'&egrave;re o&ugrave; Internet est devenu le syst&egrave;me circulatoire de notre quotidien, nous sommes entour&eacute;s d'appareils intelligents connect&eacute;s en permanence au monde ext&eacute;rieur. Dans les coulisses de cette connexion fluide, un soldat invisible op&egrave;re en silence dans un coin de la pi&egrave;ce : le <strong>routeur</strong>. Qu'est-ce que cet appareil ? Comment fonctionne-t-il ? Quels sont ses diff&eacute;rents types ? On vous explique tout.</p>
+
+    <h2><span class="n">1.</span> Qu'est-ce qu'un routeur ?</h2>
+    <p>Le routeur est un &eacute;quipement r&eacute;seau intelligent utilis&eacute; pour relier deux r&eacute;seaux ou plus entre eux &mdash; par exemple, connecter votre r&eacute;seau domestique local au r&eacute;seau Internet mondial. Sa fonction principale est de <strong>diriger les paquets de donn&eacute;es</strong> (data packets) entre les appareils connect&eacute;s et Internet, en choisissant les chemins les plus rapides et les plus efficaces pour que l'information arrive &agrave; destination avec pr&eacute;cision.</p>
+
+    <h2><span class="n">2.</span> Comment fonctionne un routeur ?</h2>
+    <p>Pour simplifier, on peut comparer le routeur &agrave; un &laquo; bureau de poste intelligent &raquo; ou &agrave; un &laquo; agent de circulation &raquo; :</p>
+    <h3>Les adresses IP</h3>
+    <p>Chaque appareil connect&eacute; au routeur poss&egrave;de une adresse unique appel&eacute;e <strong>adresse IP</strong>. Lorsque vous demandez &agrave; consulter un site web, votre appareil envoie une requ&ecirc;te (un paquet de donn&eacute;es) contenant l'adresse de l'&eacute;metteur et celle du destinataire.</p>
+    <h3>La table de routage</h3>
+    <p>Le routeur poss&egrave;de une table interne, mise &agrave; jour en continu, qui cartographie le r&eacute;seau. Il lit l'adresse sur le paquet de donn&eacute;es et d&eacute;termine l'itin&eacute;raire le plus rapide pour l'envoyer.</p>
+    <h3>La distribution des donn&eacute;es</h3>
+    <p>Le routeur s'assure que la vid&eacute;o que vous regardez sur votre t&eacute;l&eacute;phone ne soit pas envoy&eacute;e par erreur sur la t&eacute;l&eacute;vision ou sur l'ordinateur d'une autre personne, gr&acirc;ce &agrave; une technologie appel&eacute;e <strong>NAT</strong> (traduction d'adresses r&eacute;seau).</p>
+
+    <h2><span class="n">3.</span> Quelle diff&eacute;rence entre un routeur et un modem ?</h2>
+    <p>On confond souvent ces deux appareils, d'autant plus que les fabricants les int&egrave;grent aujourd'hui dans un seul bo&icirc;tier (les fameuses &laquo; box &raquo;). Pourtant, leurs fonctions sont totalement diff&eacute;rentes :</p>
+    <table>
+      <tr><th>Appareil</th><th>R&ocirc;le</th></tr>
+      <tr><td><strong>Le modem</strong></td><td>La porte d'entr&eacute;e qui am&egrave;ne Internet depuis le fournisseur d'acc&egrave;s (fibre, c&acirc;ble ou ADSL). Il convertit les signaux ext&eacute;rieurs en signaux num&eacute;riques compr&eacute;hensibles par les ordinateurs.</td></tr>
+      <tr><td><strong>Le routeur</strong></td><td>Il r&eacute;cup&egrave;re cet Internet num&eacute;rique &agrave; la sortie du modem et le distribue entre vos appareils, en WiFi ou par c&acirc;ble.</td></tr>
+    </table>
+
+    <h2><span class="n">4.</span> Les principaux types de routeurs</h2>
+    <p>Les routeurs varient selon la taille du r&eacute;seau et la nature de l'utilisation :</p>
+    <h3>A. Le routeur sans fil (Wireless Router)</h3>
+    <p>Le type le plus courant dans les foyers et les petits bureaux. Connect&eacute; au modem par un c&acirc;ble, il diffuse Internet sans fil via des ondes radio (WiFi), tout en disposant de ports (LAN) pour les connexions filaires.</p>
+    <h3>B. Le routeur filaire (Wired Router)</h3>
+    <p>Sans technologie WiFi, il d&eacute;pend enti&egrave;rement de c&acirc;bles Ethernet. On l'utilise dans les grandes entreprises ou les banques qui exigent une s&eacute;curit&eacute; maximale et une stabilit&eacute; parfaite.</p>
+    <h3>C. Le routeur Mesh (WiFi maill&eacute;)</h3>
+    <p>Un syst&egrave;me moderne compos&eacute; d'un bo&icirc;tier principal et de plusieurs modules (n&oelig;uds) r&eacute;partis dans la maison. Il fonctionne comme un r&eacute;seau unique pour &eacute;liminer les &laquo; zones mortes &raquo; dans les grandes habitations ou les logements &agrave; &eacute;tages.</p>
+    <h3>D. Le routeur central (Core Router)</h3>
+    <p>Des appareils massifs et ultra-performants utilis&eacute;s dans les centres de donn&eacute;es et chez les fournisseurs d'acc&egrave;s. Leur r&ocirc;le : diriger d'immenses volumes de donn&eacute;es au c&oelig;ur m&ecirc;me d'Internet, et non les distribuer aux utilisateurs finaux.</p>
+
+    <div class="tip"><b>&Agrave; savoir :</b> un routeur Mesh est souvent la meilleure solution contre les zones mortes. Pour d'autres astuces, lisez notre guide <a class="inline" href="ameliorer-wifi-vitesse.html">Comment am&eacute;liorer son WiFi</a>.</div>
+
+    <h2><span class="n">5.</span> S&eacute;curit&eacute; et contr&ocirc;le sur les routeurs modernes</h2>
+    <p>Le routeur n'est plus un simple outil de connexion : il est devenu la <strong>premi&egrave;re ligne de d&eacute;fense</strong> de votre r&eacute;seau, gr&acirc;ce &agrave; plusieurs fonctionnalit&eacute;s :</p>
+    <ul>
+      <li><strong>Le pare-feu (firewall) :</strong> il inspecte les donn&eacute;es entrantes et bloque les attaques malveillantes avant qu'elles n'atteignent vos appareils.</li>
+      <li><strong>Le VPN :</strong> il chiffre l'int&eacute;gralit&eacute; du trafic pour prot&eacute;ger votre vie priv&eacute;e.</li>
+      <li><strong>Le contr&ocirc;le parental :</strong> il permet de bloquer certains sites ou de couper Internet sur les appareils des enfants &agrave; certaines heures.</li>
+      <li><strong>Le r&eacute;seau invit&eacute; (guest network) :</strong> il cr&eacute;e un WiFi isol&eacute; pour les visiteurs afin de prot&eacute;ger vos appareils principaux.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>Le routeur est le chef d'orchestre qui dirige la symphonie de la connectivit&eacute; dans notre quotidien. Avec l'arriv&eacute;e du <strong>WiFi 6 et du WiFi 7</strong>, ces appareils deviennent toujours plus intelligents, capables de g&eacute;rer des centaines d'objets connect&eacute;s simultan&eacute;ment. Choisir un routeur de qualit&eacute; et le prot&eacute;ger avec un mot de passe robuste est donc une &eacute;tape essentielle pour une exp&eacute;rience Internet rapide et s&eacute;curis&eacute;e.</p>
+
+    <div class="cta-box">
+      <h3>Votre routeur tient-il ses promesses ?</h3>
+      <p>Mesurez la vitesse r&eacute;elle d&eacute;livr&eacute;e par votre routeur en quelques secondes.</p>
+      <a href="../index.html" class="cta-btn">Tester ma vitesse &rarr;</a>
+    </div>
+
+    <p style="font-size:14.5px;color:var(--muted)">&Agrave; lire aussi : <a class="inline" href="ameliorer-wifi-vitesse.html">Am&eacute;liorer son WiFi</a> &middot; <a class="inline" href="c-est-quoi-le-ping.html">C'est quoi le ping ?</a> &middot; <a class="inline" href="pourquoi-internet-lent.html">Pourquoi mon Internet est lent ?</a></p>
+  </article>
+
+  <footer>
+    &copy; TestVitesse &middot; <a href="index.html">Retour au blog</a> &middot; <a href="../index.html">Test de d&eacute;bit</a>
+  </footer>
+</div>
+</body>
+</html>
