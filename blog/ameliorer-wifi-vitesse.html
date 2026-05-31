@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comment améliorer son WiFi et booster sa vitesse Internet : guide complet</title>
+<meta name="description" content="Le guide complet pour améliorer votre WiFi et accélérer votre connexion : placement de la box, canaux, 5 GHz, répéteurs, réglages cachés et 20+ astuces concrètes.">
+<link rel="canonical" href="https://testvitesse.com/blog/ameliorer-wifi-vitesse.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Comment améliorer son WiFi et booster sa vitesse Internet">
+<meta property="og:description" content="20+ astuces concrètes pour un WiFi plus rapide et stable.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Comment améliorer son WiFi et booster sa vitesse Internet : guide complet",
+  "description":"Guide complet et astuces concrètes pour améliorer son WiFi et accélérer sa connexion Internet.",
+  "inLanguage":"fr",
+  "author":{"@type":"Organization","name":"TestVitesse"},
+  "publisher":{"@type":"Organization","name":"TestVitesse"}
+}
+</script>
+<style>
+  :root{
+    --bg:#f6f8f4;--bg2:#eef3ec;--panel:#ffffff;--stroke:#e3e9e0;
+    --text:#1a2420;--muted:#5e6e65;--body:#37433c;--dl:#0fae7a;--dl-soft:rgba(15,174,122,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Sora',sans-serif;color:var(--text);min-height:100vh;line-height:1.75;
+    background:
+      radial-gradient(800px 500px at 90% -8%, rgba(15,174,122,0.09), transparent 60%),
+      linear-gradient(180deg,var(--bg),var(--bg2));
+    padding:28px 18px 80px;
+  }
+  .wrap{width:100%;max-width:720px;margin:0 auto}
+  nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+  .logo{font-weight:700;font-size:18px;letter-spacing:-.3px;text-decoration:none;color:var(--text)}
+  .logo b{color:var(--dl)}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;margin-left:22px}
+  .nav-links a:hover{color:var(--text)}
+
+  .crumb{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .crumb a{color:var(--muted);text-decoration:none}
+  .crumb a:hover{color:var(--dl)}
+
+  article h1{font-size:clamp(27px,5.5vw,40px);font-weight:700;letter-spacing:-.6px;line-height:1.2;margin-bottom:14px}
+  .meta-line{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace;margin-bottom:30px;flex-wrap:wrap}
+  .meta-line .tag{color:var(--dl);background:var(--dl-soft);padding:3px 9px;border-radius:6px;font-weight:600}
+
+  article p{margin:0 0 20px;color:var(--body);font-size:16px}
+  article h2{font-size:24px;font-weight:600;letter-spacing:-.3px;margin:44px 0 14px;line-height:1.3;color:var(--text)}
+  article h2 .n{color:var(--dl);font-family:'JetBrains Mono',monospace;font-size:18px;margin-right:8px}
+  article h3{font-size:18.5px;font-weight:600;margin:28px 0 10px;color:var(--text)}
+  article ul,article ol{margin:0 0 20px;padding-left:22px;color:var(--body)}
+  article li{margin-bottom:9px}
+  article strong{color:var(--text);font-weight:600}
+  a.inline{color:var(--dl);text-decoration:none;border-bottom:1px solid rgba(15,174,122,.4)}
+  a.inline:hover{border-color:var(--dl)}
+
+  .intro{font-size:17.5px;color:#2b352f;border-left:3px solid var(--dl);padding-left:18px;margin-bottom:34px}
+
+  .toc{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:22px 24px;margin:0 0 38px;box-shadow:0 2px 14px rgba(26,36,32,.04)}
+  .toc h3{font-size:14px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:12px}
+  .toc ul{list-style:none;padding:0;margin:0}
+  .toc li{margin-bottom:8px}
+  .toc a{color:var(--text);text-decoration:none;font-size:15px}
+  .toc a:hover{color:var(--dl)}
+
+  table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px;background:var(--panel);border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(26,36,32,.04)}
+  th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--stroke)}
+  th{background:var(--dl-soft);color:var(--text);font-weight:600;font-size:14px}
+  tr:last-child td{border-bottom:none}
+
+  .cta-box{background:var(--panel);border:1px solid var(--stroke);border-radius:18px;padding:26px;margin:42px 0;text-align:center;box-shadow:0 4px 20px rgba(26,36,32,.05)}
+  .cta-box h3{font-size:19px;margin-bottom:8px}
+  .cta-box p{font-size:14px;color:var(--muted);margin-bottom:18px}
+  .cta-btn{display:inline-block;background:var(--dl);color:#fff;font-weight:700;text-decoration:none;
+    padding:13px 34px;border-radius:100px;font-size:15px;box-shadow:0 8px 22px rgba(15,174,122,.28);transition:transform .15s}
+  .cta-btn:hover{transform:translateY(-2px)}
+
+  .tip{background:var(--dl-soft);border:1px solid rgba(15,174,122,.22);border-radius:14px;padding:16px 18px;margin:22px 0;font-size:14.5px;color:#2b352f}
+  .tip b{color:var(--dl)}
+
+  footer{margin-top:56px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--stroke);padding-top:24px}
+  footer a{color:var(--dl);text-decoration:none;font-weight:600}
+  @media(max-width:520px){.nav-links a{margin-left:14px;font-size:13px}article p{font-size:15.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a href="../index.html" class="logo">Test<b>Vitesse</b></a>
+    <div class="nav-links">
+      <a href="../index.html">Test de débit</a>
+      <a href="index.html">Blog</a>
+    </div>
+  </nav>
+
+  <div class="crumb"><a href="../index.html">Accueil</a> &rsaquo; <a href="index.html">Blog</a> &rsaquo; Améliorer son WiFi</div>
+
+  <article>
+    <h1>Comment améliorer son WiFi et booster sa vitesse Internet : le guide complet</h1>
+    <div class="meta-line">
+      <span class="tag">Guide complet</span>
+      <span>Lecture &middot; 10 min</span>
+      <span>&middot; Mis &agrave; jour r&eacute;cemment</span>
+    </div>
+
+    <p class="intro">Un WiFi lent, instable ou qui ne couvre pas toute la maison&hellip; c'est l'une des frustrations les plus courantes. La bonne nouvelle : dans la grande majorit&eacute; des cas, le probl&egrave;me ne vient pas de votre abonnement, mais de votre <strong>installation</strong>. Ce guide rassemble plus de 20 astuces concr&egrave;tes, class&eacute;es de la plus simple &agrave; la plus avanc&eacute;e, pour retrouver une connexion rapide et stable.</p>
+
+    <div class="toc">
+      <h3>Au programme</h3>
+      <ul>
+        <li><a href="#etape0">Avant tout : mesurez votre vitesse r&eacute;elle</a></li>
+        <li><a href="#placement">1. Bien placer sa box</a></li>
+        <li><a href="#bandes">2. 2,4 GHz ou 5 GHz : choisir la bonne bande</a></li>
+        <li><a href="#canaux">3. Changer de canal WiFi</a></li>
+        <li><a href="#materiel">4. Mettre &agrave; jour et entretenir son mat&eacute;riel</a></li>
+        <li><a href="#couverture">5. &Eacute;tendre la couverture (r&eacute;p&eacute;teur, mesh, CPL)</a></li>
+        <li><a href="#reglages">6. Les r&eacute;glages cach&eacute;s qui changent tout</a></li>
+        <li><a href="#habitudes">7. Les bonnes habitudes au quotidien</a></li>
+      </ul>
+    </div>
+
+    <h2 id="etape0">Avant tout : mesurez votre vitesse r&eacute;elle</h2>
+    <p>Avant de toucher &agrave; quoi que ce soit, vous devez savoir d'o&ugrave; vous partez. Faites un <strong>test de d&eacute;bit</strong> dans deux situations :</p>
+    <ol>
+      <li><strong>Juste &agrave; c&ocirc;t&eacute; de la box</strong>, en WiFi.</li>
+      <li><strong>Dans la pi&egrave;ce o&ugrave; &ccedil;a rame</strong>, au m&ecirc;me moment.</li>
+    </ol>
+    <p>Si la vitesse pr&egrave;s de la box est bonne mais s'effondre ailleurs, votre probl&egrave;me est la <strong>couverture WiFi</strong>, pas votre opérateur. Si elle est mauvaise partout, le souci vient de la connexion elle-m&ecirc;me (voir notre guide <a class="inline" href="pourquoi-internet-lent.html">Pourquoi mon Internet est lent ?</a>).</p>
+
+    <div class="cta-box">
+      <h3>Faites le test maintenant</h3>
+      <p>Notez vos chiffres avant et apr&egrave;s chaque astuce pour mesurer les progr&egrave;s.</p>
+      <a href="../index.html" class="cta-btn">Tester ma vitesse &rarr;</a>
+    </div>
+
+    <h2 id="placement"><span class="n">1.</span> Bien placer sa box</h2>
+    <p>C'est l'astuce la plus sous-estim&eacute;e, et souvent la plus efficace. Les ondes WiFi se diffusent en sph&egrave;re autour de la box et s'affaiblissent &agrave; chaque obstacle.</p>
+    <h3>O&ugrave; placer la box</h3>
+    <ul>
+      <li><strong>Au centre du logement</strong>, pas dans un coin ni pr&egrave;s d'un mur ext&eacute;rieur.</li>
+      <li><strong>En hauteur</strong> (sur une &eacute;tag&egrave;re), jamais par terre ni derri&egrave;re un meuble.</li>
+      <li><strong>&Agrave; l'air libre</strong> : ne l'enfermez pas dans un placard ou un tiroir.</li>
+      <li>Loin des appareils qui cr&eacute;ent des interf&eacute;rences : <strong>four micro-ondes, t&eacute;l&eacute;phone sans fil (DECT), enceintes Bluetooth</strong>.</li>
+    </ul>
+    <div class="tip"><b>Astuce :</b> l'eau absorbe les ondes. &Eacute;vitez de placer la box pr&egrave;s d'un aquarium, d'un radiateur rempli d'eau ou d'un mur tr&egrave;s humide.</div>
+
+    <h2 id="bandes"><span class="n">2.</span> 2,4 GHz ou 5 GHz : choisir la bonne bande</h2>
+    <p>Les box modernes &eacute;mettent sur deux fr&eacute;quences. Comprendre la diff&eacute;rence change tout :</p>
+    <table>
+      <tr><th>Bande</th><th>Avantages</th><th>Inconv&eacute;nients</th></tr>
+      <tr><td><strong>2,4 GHz</strong></td><td>Longue port&eacute;e, traverse mieux les murs</td><td>Plus lente, tr&egrave;s encombr&eacute;e</td></tr>
+      <tr><td><strong>5 GHz</strong></td><td>Beaucoup plus rapide, moins satur&eacute;e</td><td>Port&eacute;e plus courte</td></tr>
+    </table>
+    <p>En r&egrave;gle g&eacute;n&eacute;rale : utilisez le <strong>5 GHz</strong> quand vous &ecirc;tes proche de la box (salon, bureau) et le <strong>2,4 GHz</strong> pour les pi&egrave;ces &eacute;loign&eacute;es. Beaucoup de box regroupent les deux sous un seul nom de r&eacute;seau ; si besoin, s&eacute;parez-les dans les r&eacute;glages pour choisir manuellement.</p>
+
+    <h2 id="canaux"><span class="n">3.</span> Changer de canal WiFi</h2>
+    <p>En ville ou en appartement, des dizaines de r&eacute;seaux voisins se battent sur les m&ecirc;mes canaux. R&eacute;sultat : des interf&eacute;rences et des ralentissements, surtout le soir.</p>
+    <ul>
+      <li>Connectez-vous &agrave; l'interface de votre box (souvent <strong>192.168.1.1</strong> dans le navigateur).</li>
+      <li>Dans les r&eacute;glages WiFi, passez le canal en <strong>automatique</strong>, ou choisissez manuellement un canal peu utilis&eacute; (1, 6 ou 11 en 2,4 GHz).</li>
+      <li>Des applications gratuites d'analyse WiFi (sur smartphone) montrent quels canaux sont satur&eacute;s autour de vous.</li>
+    </ul>
+
+    <h2 id="materiel"><span class="n">4.</span> Mettre &agrave; jour et entretenir son mat&eacute;riel</h2>
+    <h3>Red&eacute;marrer r&eacute;guli&egrave;rement</h3>
+    <p>Une box laiss&eacute;e allum&eacute;e des mois accumule des erreurs. Un red&eacute;marrage (&eacute;teindre 30 secondes) r&eacute;sout une bonne partie des ralentissements. Faites-le une fois par mois.</p>
+    <h3>Mettre &agrave; jour le firmware</h3>
+    <p>Les fabricants publient des mises &agrave; jour qui am&eacute;liorent stabilit&eacute; et s&eacute;curit&eacute;. V&eacute;rifiez dans l'interface de la box qu'elle est &agrave; jour.</p>
+    <h3>V&eacute;rifier l'&acirc;ge de la box</h3>
+    <p>Une box de plus de 5 ans peut ne pas g&eacute;rer les normes r&eacute;centes (WiFi 6). Si la v&ocirc;tre est ancienne, demandez &agrave; votre op&eacute;rateur s'il propose un mod&egrave;le plus r&eacute;cent &mdash; souvent gratuitement.</p>
+
+    <h2 id="couverture"><span class="n">5.</span> &Eacute;tendre la couverture</h2>
+    <p>Si certaines pi&egrave;ces restent mal couvertes malgr&eacute; tout, il faut &eacute;tendre le signal. Trois solutions :</p>
+    <h3>Le r&eacute;p&eacute;teur WiFi</h3>
+    <p>Le moins cher. Il capte le signal et le r&eacute;&eacute;met plus loin. Pratique, mais r&eacute;duit souvent le d&eacute;bit de moiti&eacute; et cr&eacute;e parfois un second r&eacute;seau.</p>
+    <h3>Le syst&egrave;me Mesh</h3>
+    <p>La meilleure solution pour les grandes surfaces. Plusieurs bo&icirc;tiers cr&eacute;ent un seul r&eacute;seau homog&egrave;ne dans toute la maison, sans coupure quand vous vous d&eacute;placez. Plus cher, mais nettement sup&eacute;rieur.</p>
+    <h3>Le CPL (courant porteur)</h3>
+    <p>Fait passer Internet par le r&eacute;seau &eacute;lectrique. Id&eacute;al quand les murs sont &eacute;pais ou les &eacute;tages nombreux. La qualit&eacute; d&eacute;pend de l'installation &eacute;lectrique.</p>
+    <div class="tip"><b>Astuce :</b> pour les usages fixes et exigeants (PC de jeu, t&eacute;l&eacute;vision, t&eacute;l&eacute;travail), rien ne battra un bon vieux <strong>c&acirc;ble Ethernet</strong>. Z&eacute;ro interf&eacute;rence, latence minimale.</div>
+
+    <h2 id="reglages"><span class="n">6.</span> Les r&eacute;glages cach&eacute;s qui changent tout</h2>
+    <ul>
+      <li><strong>QoS (Quality of Service) :</strong> priorisez certains usages (visio, jeu) pour qu'ils ne soient pas ralentis par les t&eacute;l&eacute;chargements.</li>
+      <li><strong>S&eacute;curit&eacute; WPA2/WPA3 :</strong> un r&eacute;seau non prot&eacute;g&eacute; peut &ecirc;tre utilis&eacute; par des voisins, ce qui vous ralentit. Mettez un mot de passe solide.</li>
+      <li><strong>D&eacute;sactiver les appareils fant&ocirc;mes :</strong> v&eacute;rifiez la liste des appareils connect&eacute;s et supprimez ceux que vous ne reconnaissez pas.</li>
+      <li><strong>Largeur de canal :</strong> en 5 GHz, une largeur de 80 MHz offre plus de d&eacute;bit si l'environnement est peu encombr&eacute;.</li>
+    </ul>
+
+    <h2 id="habitudes"><span class="n">7.</span> Les bonnes habitudes au quotidien</h2>
+    <ul>
+      <li>Mettez en <strong>pause les t&eacute;l&eacute;chargements</strong> et sauvegardes cloud pendant les visios ou les parties en ligne.</li>
+      <li>Limitez le nombre d'appareils <strong>actifs en m&ecirc;me temps</strong>.</li>
+      <li>Fermez les applications qui consomment en arri&egrave;re-plan.</li>
+      <li>Refaites un <strong>test de d&eacute;bit</strong> apr&egrave;s chaque changement pour v&eacute;rifier son effet r&eacute;el.</li>
+    </ul>
+
+    <h2>En r&eacute;sum&eacute;</h2>
+    <p>Am&eacute;liorer son WiFi, c'est rarement une seule action magique : c'est une suite de petits r&eacute;glages qui, mis bout &agrave; bout, transforment l'exp&eacute;rience. Commencez par le <strong>placement de la box</strong> et la <strong>bande 5 GHz</strong> (gratuit et imm&eacute;diat), puis passez aux solutions d'extension si besoin. Et surtout : <strong>mesurez avant et apr&egrave;s</strong> pour savoir ce qui fonctionne vraiment chez vous.</p>
+
+    <div class="cta-box">
+      <h3>V&eacute;rifiez vos progr&egrave;s</h3>
+      <p>Relancez un test de d&eacute;bit gratuit et comparez avec votre mesure de d&eacute;part.</p>
+      <a href="../index.html" class="cta-btn">Tester ma vitesse maintenant &rarr;</a>
+    </div>
+
+    <p style="font-size:14.5px;color:var(--muted)">&Agrave; lire aussi : <a class="inline" href="c-est-quoi-le-ping.html">C'est quoi le ping et la latence ?</a> &middot; <a class="inline" href="pourquoi-internet-lent.html">Pourquoi mon Internet est lent ?</a></p>
+  </article>
+
+  <footer>
+    &copy; TestVitesse &middot; <a href="index.html">Retour au blog</a> &middot; <a href="../index.html">Test de d&eacute;bit</a>
+  </footer>
+</div>
+</body>
+</html>
