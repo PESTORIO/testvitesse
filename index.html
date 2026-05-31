@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test de débit – Speed test : testez la vitesse de votre connexion Internet</title>
+<meta name="description" content="Testez gratuitement la vitesse de votre connexion Internet : débit descendant, montant, ping et latence. Résultat rapide et précis en quelques secondes.">
+<link rel="canonical" href="https://testvitesse.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Test de débit – Testez la vitesse de votre connexion Internet">
+<meta property="og:description" content="Débit, ping et latence en temps réel. Gratuit et précis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f8f4;
+    --bg2:#eef3ec;
+    --panel:#ffffff;
+    --stroke:#e3e9e0;
+    --text:#1a2420;
+    --muted:#5e6e65;
+    --dl:#0fae7a;
+    --dl-soft:rgba(15,174,122,0.10);
+    --ul:#5b7cf5;
+    --ul-soft:rgba(91,124,245,0.10);
+    --ping:#e0a000;
+    --track:rgba(26,36,32,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Sora',sans-serif;
+    background:
+      radial-gradient(900px 600px at 80% -10%, rgba(15,174,122,0.10), transparent 60%),
+      radial-gradient(800px 600px at 10% 110%, rgba(91,124,245,0.08), transparent 55%),
+      linear-gradient(180deg,var(--bg),var(--bg2));
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:28px 18px 60px;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:linear-gradient(rgba(26,36,32,.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(26,36,32,.03) 1px,transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(circle at 50% 35%, #000 0%, transparent 72%);
+  }
+  .wrap{position:relative;z-index:1;width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;gap:24px}
+
+  .topnav{width:100%;max-width:560px;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;position:relative;z-index:1}
+  .topnav .logo{font-weight:700;font-size:17px;letter-spacing:-.3px;text-decoration:none;color:var(--text)}
+  .topnav .logo b{color:var(--dl)}
+  .topnav a.link{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}
+  .topnav a.link:hover{color:var(--dl)}
+
+  header{text-align:center;animation:fade .8s ease both}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.4px;
+    color:var(--dl);background:var(--dl-soft);border:1px solid rgba(15,174,122,.25);
+    padding:6px 14px;border-radius:100px;margin-bottom:14px;font-weight:600;
+  }
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--dl);box-shadow:0 0 10px var(--dl)}
+  h1{font-size:clamp(26px,6vw,38px);font-weight:700;letter-spacing:-.5px;line-height:1.2}
+  h1 span{color:var(--dl)}
+  .sub{color:var(--muted);font-size:14px;margin-top:8px}
+
+  .gauge{position:relative;width:340px;max-width:88vw;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;animation:fade .9s .1s ease both}
+  .gauge svg{width:100%;height:100%;transform:rotate(135deg)}
+  .arc-bg{fill:none;stroke:var(--track);stroke-width:14;stroke-linecap:round}
+  .arc-fg{fill:none;stroke-width:14;stroke-linecap:round;stroke:var(--dl);
+    filter:drop-shadow(0 0 6px rgba(15,174,122,.5));transition:stroke .4s}
+  .ticks line{stroke:rgba(26,36,32,.2);stroke-width:2}
+  .tick-label{font-family:'JetBrains Mono',monospace;font-size:13px;fill:var(--muted)}
+  .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .reading{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:clamp(46px,15vw,72px);line-height:1;letter-spacing:-2px}
+  .unit{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:15px;margin-top:6px;letter-spacing:1px}
+  .phase{margin-top:14px;font-size:13px;color:var(--muted);height:18px;display:flex;align-items:center;gap:7px}
+  .phase .pdot{width:6px;height:6px;border-radius:50%;background:var(--muted)}
+  .phase.dl .pdot{background:var(--dl);box-shadow:0 0 8px var(--dl)}
+  .phase.ul .pdot{background:var(--ul);box-shadow:0 0 8px var(--ul)}
+  .phase.ping .pdot{background:var(--ping);box-shadow:0 0 8px var(--ping)}
+
+  .btn{
+    font-family:inherit;cursor:pointer;border:none;color:#fff;font-weight:700;font-size:18px;
+    padding:16px 54px;border-radius:100px;background:var(--dl);letter-spacing:.3px;
+    box-shadow:0 8px 26px rgba(15,174,122,.30);transition:transform .15s,box-shadow .2s,opacity .2s;
+    animation:fade .9s .2s ease both;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(15,174,122,.42)}
+  .btn:active{transform:translateY(0)}
+  .btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+  .cards{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;animation:fade .9s .25s ease both}
+  .card{background:var(--panel);border:1px solid var(--stroke);border-radius:18px;padding:18px 18px;box-shadow:0 2px 14px rgba(26,36,32,.04);position:relative;overflow:hidden}
+  .card .ic{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;font-weight:500}
+  .card .ic .bar{width:9px;height:9px;border-radius:3px}
+  .card .val{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:30px;margin-top:10px;letter-spacing:-1px}
+  .card .u{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-weight:400;margin-left:5px}
+  .card .def{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:10px;opacity:.9}
+  .card.dl .bar{background:var(--dl);box-shadow:0 0 8px var(--dl)}
+  .card.ul .bar{background:var(--ul);box-shadow:0 0 8px var(--ul)}
+  .card.ping .bar{background:var(--ping);box-shadow:0 0 8px var(--ping)}
+  .card.jit .bar{background:#e0567f;box-shadow:0 0 8px #e0567f}
+
+  .meta{width:100%;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    color:var(--muted);font-size:12.5px;border-top:1px solid var(--stroke);padding-top:16px;animation:fade 1s .35s ease both}
+  .meta b{color:var(--text);font-weight:600;font-family:'JetBrains Mono',monospace}
+  .err{color:#d4456e;font-size:13.5px;text-align:center;max-width:440px;line-height:1.6}
+
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.html" class="logo">Test<b>Vitesse</b></a>
+  <a href="blog/index.html" class="link">Blog</a>
+</div>
+<div class="wrap">
+  <header>
+    <div class="badge"><span class="dot"></span> Test en direct via le réseau Cloudflare</div>
+    <h1>Test de <span>vitesse Internet</span></h1>
+    <p class="sub">Mesurez votre débit descendant, montant et la latence en temps réel</p>
+  </header>
+
+  <div class="gauge">
+    <svg viewBox="0 0 240 240" id="svg">
+      <path class="arc-bg" id="arcBg"/>
+      <path class="arc-fg" id="arcFg"/>
+      <g class="ticks" id="ticks"></g>
+    </svg>
+    <div class="center">
+      <div class="reading" id="reading">0.0</div>
+      <div class="unit">Mbps</div>
+      <div class="phase" id="phase"><span class="pdot"></span><span id="phaseTxt">Prêt à démarrer</span></div>
+    </div>
+  </div>
+
+  <button class="btn" id="startBtn">Démarrer le test</button>
+
+  <div class="cards">
+    <div class="card dl"><div class="ic"><span class="bar"></span> Téléchargement · Download</div><div class="val"><span id="dlVal">—</span><span class="u">Mbps</span></div><div class="def">Vitesse à laquelle vous recevez des données (vidéos, pages, fichiers). Plus c'est élevé, mieux c'est.</div></div>
+    <div class="card ul"><div class="ic"><span class="bar"></span> Envoi · Upload</div><div class="val"><span id="ulVal">—</span><span class="u">Mbps</span></div><div class="def">Vitesse à laquelle vous envoyez des données (e-mails, photos, visioconférence, sauvegardes cloud).</div></div>
+    <div class="card ping"><div class="ic"><span class="bar"></span> Latence · Ping</div><div class="val"><span id="pingVal">—</span><span class="u">ms</span></div><div class="def">Temps de réaction de la connexion. Plus le ping est bas, plus c'est réactif (crucial pour le jeu en ligne).</div></div>
+    <div class="card jit"><div class="ic"><span class="bar"></span> Gigue · Jitter</div><div class="val"><span id="jitVal">—</span><span class="u">ms</span></div><div class="def">Variation du ping dans le temps. Une gigue faible signifie une connexion stable et régulière.</div></div>
+  </div>
+
+  <div class="meta">
+    <span>Adresse IP : <b id="ip">—</b></span>
+    <span>Serveur : <b id="colo">—</b></span>
+    <span>Localisation : <b id="isp">—</b></span>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+
+<footer style="position:relative;z-index:1;margin-top:40px;text-align:center;color:var(--muted);font-size:12.5px;line-height:2">
+  <a href="a-propos.html" style="color:var(--muted);text-decoration:none;margin:0 8px">À propos</a> ·
+  <a href="contact.html" style="color:var(--muted);text-decoration:none;margin:0 8px">Contact</a> ·
+  <a href="blog/index.html" style="color:var(--muted);text-decoration:none;margin:0 8px">Blog</a> ·
+  <a href="politique-confidentialite.html" style="color:var(--muted);text-decoration:none;margin:0 8px">Confidentialité</a> ·
+  <a href="mentions-legales.html" style="color:var(--muted);text-decoration:none;margin:0 8px">Mentions légales</a>
+  <div style="margin-top:8px;opacity:.7">© TestVitesse</div>
+</footer>
+
+<script>
+(function(){
+  const R=104, CX=120, CY=120;
+  const START=135, SWEEP=270;
+  const TICKS=[0,1,5,10,25,50,100,250,500,1000];
+
+  const reading=document.getElementById('reading');
+  const arcFg=document.getElementById('arcFg');
+  const arcBg=document.getElementById('arcBg');
+  const phaseEl=document.getElementById('phase');
+  const phaseTxt=document.getElementById('phaseTxt');
+  const btn=document.getElementById('startBtn');
+  const errEl=document.getElementById('err');
+
+  function pol(deg){const r=(deg-90)*Math.PI/180;return [CX+R*Math.cos(r),CY+R*Math.sin(r)];}
+  function arcPath(a0,a1){
+    const [x0,y0]=pol(a0),[x1,y1]=pol(a1);
+    const large=(a1-a0)>180?1:0;
+    return `M ${x0} ${y0} A ${R} ${R} 0 ${large} 1 ${x1} ${y1}`;
+  }
+  arcBg.setAttribute('d',arcPath(START,START+SWEEP));
+
+  function speedFrac(v){
+    if(v<=0)return 0;
+    if(v>=TICKS[TICKS.length-1])return 1;
+    for(let i=0;i<TICKS.length-1;i++){
+      if(v>=TICKS[i]&&v<=TICKS[i+1]){
+        const seg=1/(TICKS.length-1);
+        const t=(v-TICKS[i])/(TICKS[i+1]-TICKS[i]);
+        return seg*(i+t);
+      }
+    }
+    return 1;
+  }
+
+  (function(){
+    const g=document.getElementById('ticks');
+    TICKS.forEach((t,i)=>{
+      const ang=START+SWEEP*(i/(TICKS.length-1));
+      const r2=R-12,r3=R-30;
+      const rr=(ang-90)*Math.PI/180;
+      const lx1=CX+r2*Math.cos(rr),ly1=CY+r2*Math.sin(rr);
+      const lx2=CX+(R+2)*Math.cos(rr),ly2=CY+(R+2)*Math.sin(rr);
+      const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1',lx1);line.setAttribute('y1',ly1);
+      line.setAttribute('x2',lx2);line.setAttribute('y2',ly2);
+      g.appendChild(line);
+      const tx=CX+r3*Math.cos(rr),ty=CY+r3*Math.sin(rr);
+      const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
+      txt.setAttribute('x',tx);txt.setAttribute('y',ty);
+      txt.setAttribute('class','tick-label');
+      txt.setAttribute('text-anchor','middle');
+      txt.setAttribute('dominant-baseline','middle');
+      txt.setAttribute('transform',`rotate(-135 ${tx} ${ty})`);
+      txt.textContent=t;
+      g.appendChild(txt);
+    });
+  })();
+
+  let dispVal=0, targetVal=0;
+  function setColor(c){arcFg.style.stroke=c;arcFg.style.filter=`drop-shadow(0 0 6px ${c})`;}
+  function render(){
+    dispVal+=(targetVal-dispVal)*0.18;
+    const f=speedFrac(dispVal);
+    arcFg.setAttribute('d',arcPath(START,START+SWEEP*Math.max(0.0001,f)));
+    reading.textContent=dispVal<10?dispVal.toFixed(1):Math.round(dispVal);
+    requestAnimationFrame(render);
+  }
+  render();
+  function show(v){targetVal=v;}
+  function setPhase(name,cls){phaseTxt.textContent=name;phaseEl.className='phase '+(cls||'');}
+
+  const DOWN='https://speed.cloudflare.com/__down?bytes=';
+  const UP='https://speed.cloudflare.com/__up';
+
+  async function ping(n){
+    const lat=[];
+    for(let i=0;i<n;i++){
+      const t0=performance.now();
+      await fetch(DOWN+'1&t='+Math.random(),{cache:'no-store'});
+      lat.push(performance.now()-t0);
+    }
+    lat.sort((a,b)=>a-b);
+    const min=lat[0];
+    let jit=0;for(let i=1;i<lat.length;i++)jit+=Math.abs(lat[i]-lat[i-1]);
+    jit=jit/(lat.length-1);
+    return {ping:min, jitter:jit};
+  }
+
+  async function download(durationMs){
+    const t0=performance.now();
+    let total=0;
+    const chunk=25*1024*1024;
+    let win=[];
+    while(performance.now()-t0<durationMs){
+      const resp=await fetch(DOWN+chunk+'&t='+Math.random(),{cache:'no-store'});
+      const reader=resp.body.getReader();
+      while(true){
+        const {done,value}=await reader.read();
+        if(done)break;
+        total+=value.length;
+        const now=performance.now();
+        win.push({t:now,b:value.length});
+        while(win.length&&now-win[0].t>800)win.shift();
+        let wb=0;win.forEach(x=>wb+=x.b);
+        const span=(now-win[0].t)/1000||0.001;
+        show((wb*8)/(span*1e6));
+        if(now-t0>durationMs)break;
+      }
+    }
+    const sec=(performance.now()-t0)/1000;
+    return (total*8)/(sec*1e6);
+  }
+
+  async function upload(durationMs){
+    const t0=performance.now();
+    let total=0;
+    const chunk=4*1024*1024;
+    const payload=new Uint8Array(chunk);
+    let win=[];
+    while(performance.now()-t0<durationMs){
+      const cs=performance.now();
+      const resp=await fetch(UP,{method:'POST',body:payload,cache:'no-store',mode:'cors'});
+      try{await resp.arrayBuffer();}catch(e){}
+      const now=performance.now();
+      total+=chunk;
+      win.push({b:chunk,d:(now-cs)/1000||0.001});
+      while(win.length>4)win.shift();
+      let wb=0,wd=0;win.forEach(x=>{wb+=x.b;wd+=x.d;});
+      show((wb*8)/(wd*1e6));
+    }
+    const sec=(performance.now()-t0)/1000;
+    return (total*8)/(sec*1e6);
+  }
+
+  async function meta(){
+    try{
+      const r=await fetch('https://speed.cloudflare.com/cdn-cgi/trace',{cache:'no-store'});
+      const txt=await r.text();
+      const o={};txt.trim().split('\n').forEach(l=>{const[k,v]=l.split('=');o[k]=v;});
+      document.getElementById('ip').textContent=o.ip||'—';
+      document.getElementById('colo').textContent=o.colo||'—';
+      document.getElementById('isp').textContent=(o.loc||'')+(o.colo?' · '+o.colo:'')||'—';
+    }catch(e){}
+  }
+
+  async function run(){
+    errEl.textContent='';
+    btn.disabled=true;btn.textContent='Test en cours...';
+    ['dlVal','ulVal','pingVal','jitVal'].forEach(id=>document.getElementById(id).textContent='—');
+    show(0);dispVal=0;
+    meta();
+
+    try{
+      setPhase('Mesure de la latence...','ping');setColor(getCSS('--ping'));
+      const p=await ping(12);
+      document.getElementById('pingVal').textContent=Math.round(p.ping);
+      document.getElementById('jitVal').textContent=Math.round(p.jitter);
+    }catch(e){
+      document.getElementById('pingVal').textContent='✕';
+      document.getElementById('jitVal').textContent='✕';
+    }
+
+    let dlOk=0;
+    try{
+      setPhase('Mesure du téléchargement...','dl');setColor(getCSS('--dl'));
+      const dl=await download(11000);
+      dlOk=dl;show(dl);
+      document.getElementById('dlVal').textContent=fmt(dl);
+    }catch(e){
+      document.getElementById('dlVal').textContent='✕';
+      errEl.textContent='Impossible de joindre les serveurs Cloudflare. Vérifiez votre connexion ou désactivez votre bloqueur de publicités.';
+    }
+
+    try{
+      setPhase('Mesure de l\u2019envoi...','ul');setColor(getCSS('--ul'));
+      show(0);dispVal=0;
+      const ul=await upload(9000);
+      show(ul);
+      document.getElementById('ulVal').textContent=fmt(ul);
+    }catch(e){
+      document.getElementById('ulVal').textContent='✕';
+      errEl.textContent='Le téléchargement et la latence ont réussi, mais la mesure de l\u2019envoi a échoué. Essayez un autre navigateur ou désactivez votre bloqueur de publicités.';
+    }
+
+    setPhase('Test terminé ✓','dl');setColor(getCSS('--dl'));
+    show(dlOk);
+    btn.disabled=false;btn.textContent='Relancer le test';
+  }
+  function fmt(v){return v<10?v.toFixed(1):Math.round(v);}
+  function getCSS(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+
+  btn.addEventListener('click',run);
+})();
+</script>
+</body>
+</html>
